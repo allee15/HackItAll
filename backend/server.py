@@ -17,8 +17,8 @@ import cohere
 co = cohere.Client('5TYOkSNKhKPMrAGZHaDW8Ga6Zlq6tRu33WcU5rif')
 
 
-
 app = Flask(__name__)
+
 
 @app.route('/generate', methods=['GET'])
 def generate_text():
@@ -39,5 +39,41 @@ def generate_text():
     return jsonify({'generated_text': response.generations[0].text})
 
 
+@app.route('/tap', methods=['POST'])
+def tap():
+    data = request.get_json()
+    x_start = data.get('x_start')
+    y_start = data.get('y_start')
+    x_end = data.get('x_end')
+    y_end = data.get('y_end')
+    x = data.get('x')
+    y = data.get('y')
+    roll = data.get('roll')
+    pitch = data.get('pitch')
+
+    #todo process
+    print(f"x_start: {x_start}, y_start: {y_start}, x_end: {x_end}, y_end: {y_end}, x: {x}, y: {y}, roll: {roll}, pitch: {pitch}")
+
+    return jsonify({"tap": True})
+
+
+@app.route('/tap_all', methods=['POST'])
+def tap_all():
+    data = request.get_json()
+    all_coords = data.get('all_coords')
+
+    #todo process
+    print(f"all_coords: {all_coords}")
+
+    return jsonify({"tap_all":True})
+
+
+@app.route('/user_error', methods=['GET'])
+def user_taps():
+    #todo get from trained model
+    return jsonify({
+        'user_error': False
+    })
+    
 if __name__ == '__main__':
     app.run(debug=True)
