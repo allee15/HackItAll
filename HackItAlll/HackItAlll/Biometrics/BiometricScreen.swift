@@ -15,7 +15,7 @@ struct BiometricScreen: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.white)
+                .fill(Color.bgPrimary)
                 .ignoresSafeArea()
             
             VStack {

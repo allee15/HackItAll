@@ -6,21 +6,19 @@
 //
 
 import SwiftUI
+import SwiftUIBottomSheet
 
 struct HomeScreen: View {
     @StateObject private var viewModel = HomeViewModel()
     @EnvironmentObject private var navigation: Navigation
     @State var showDetails: Bool = false
+    @State var showBottomSheet: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Button {
-//                    let view = BottomSheetView {
-//                        BottomSheetManager.instance.hideBottomSheet()
-//                        navigation.push(BiometricScreen().asDestination(), animated: true)
-//                    }
-//                    BottomSheetManager.instance.showBottomSheet(view: view)
+                    self.showBottomSheet = true
                 } label: {
                     Image(.icAccount)
                         .resizable()
@@ -73,7 +71,7 @@ struct HomeScreen: View {
                     case 1:
                         WidgetActionView(icon: .icCredit,
                                          text: "Loans") {
-                            //TODO
+                            navigation.push(NewLoanScreen().asDestination(), animated: true)
                         }
                     case 2:
                         WidgetActionView(icon: .icExpense,
@@ -96,6 +94,23 @@ struct HomeScreen: View {
             .background(Color.bgPrimary)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea(.container, edges: [.bottom, .leading, .trailing])
+            .bottomSheet(
+                isPresented: $showBottomSheet,
+                config: BottomSheetConfig(
+                    kind: .tapDismiss,
+                    background: Color.bgBottomSheet,
+                    handleColor: Color.init(hex: "#EDEDED"),
+                    handlePosition: .inside,
+                    topBarCornerRadius: 16,
+                    sizeChangeRequest: .constant(0)
+                ),
+                content: {
+                    BottomSheetView {
+                        showBottomSheet = false
+                        navigation.push(BiometricScreen().asDestination(), animated: true)
+                    }
+                }
+            )
     }
 }
 
@@ -211,6 +226,7 @@ struct BottomSheetView: View {
     let action: () -> ()
     var body: some View {
         VStack {
+            Spacer(minLength: 24)
             Button {
                 action()
             } label: {
@@ -219,12 +235,17 @@ struct BottomSheetView: View {
                         .resizable()
                         .frame(width: 32, height: 32)
                     Text("Configure biometric behaviour")
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        .background(Color.bgSecondary)
-                }
-            }
-        }.background(Color.bgBottomSheet)
+                        .font(.KronaOne.regular(size: 12))
+                        .foregroundStyle(Color.black)
+                    
+                }.padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                    .background(Color.bgSecondary)
+                    .cornerRadius(16, corners: .allCorners)
+            }.padding(.vertical, 44)
+            
+            Spacer(minLength: 24)
+        }
     }
 }
 

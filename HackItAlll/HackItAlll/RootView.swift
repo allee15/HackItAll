@@ -19,7 +19,6 @@ class RootViewModel: BaseViewModel {
 
 struct RootView: View {
     @ObservedObject var navigation: Navigation
-//    @ObservedObject private var bottomSheetManager: BottomSheetManager.instance
     @StateObject var viewModel = RootViewModel()
     
     var body: some View {

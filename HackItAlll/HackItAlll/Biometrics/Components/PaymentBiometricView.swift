@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PaymentBiometricsView: View {
-    @StateObject var viewModel = BiometricViewModel()
+    @ObservedObject var viewModel: BiometricViewModel
        
        @State private var globalFrame: CGRect = .zero
        @State private var globalTap: CGPoint = .zero
@@ -34,13 +34,13 @@ struct PaymentBiometricsView: View {
                    RoundedRectangle(cornerRadius: 20)
                        .fill(
                            (viewModel.activePaymentButton == .Iban) ?
-                               .blue :
-                                   .gray
+                           Color.bgSecondary :
+                               Color.bgSecondary.opacity(0.32)
                        )
                        .frame(height: 50)
                    
-                   Text("IBAN")
-                       .foregroundColor(.white)
+                   Text((viewModel.activePaymentButton == .Iban) ? "Tap me now" : "Just a simple button")
+                       .foregroundColor((viewModel.activePaymentButton == .Iban) ? .black : .white)
                }
                .modifier(GlobalPositionModifier())
                .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -66,13 +66,13 @@ struct PaymentBiometricsView: View {
                        RoundedRectangle(cornerRadius: 20)
                            .fill(
                                (viewModel.activePaymentButton == .Amount) ?
-                                   .blue :
-                                       .gray
+                               Color.bgSecondary :
+                                   Color.bgSecondary.opacity(0.32)
                            )
                            .frame(height: 50)
                        
-                       Text("Amount")
-                           .foregroundColor(.white)
+                       Text((viewModel.activePaymentButton == .Amount) ? "Tap me now" : "Just a simple button")
+                           .foregroundColor((viewModel.activePaymentButton == .Amount) ? .black : .white)
                    }
                    .modifier(GlobalPositionModifier())
                    .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -97,13 +97,13 @@ struct PaymentBiometricsView: View {
                        RoundedRectangle(cornerRadius: 20)
                            .fill(
                                (viewModel.activePaymentButton == .Currency) ?
-                                   .blue :
-                                       .gray
+                               Color.bgSecondary :
+                                   Color.bgSecondary.opacity(0.32)
                            )
                            .frame(height: 50)
                        
-                       Text("Currency")
-                           .foregroundColor(.white)
+                       Text((viewModel.activePaymentButton == .Currency) ? "Tap me now" : "Just a simple button")
+                           .foregroundColor((viewModel.activePaymentButton == .Currency) ? .black : .white)
                    }
                    .modifier(GlobalPositionModifier())
                    .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -129,13 +129,13 @@ struct PaymentBiometricsView: View {
                    RoundedRectangle(cornerRadius: 20)
                        .fill(
                            (viewModel.activePaymentButton == .Message) ?
-                               .blue :
-                                   .gray
+                           Color.bgSecondary :
+                               Color.bgSecondary.opacity(0.32)
                        )
                        .frame(height: 100)
                    
-                   Text("Message")
-                       .foregroundColor(.white)
+                   Text((viewModel.activePaymentButton == .Message) ? "Tap me now" : "Just a simple button")
+                       .foregroundColor((viewModel.activePaymentButton == .Message) ? .black : .white)
                }
                .modifier(GlobalPositionModifier())
                .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -161,13 +161,13 @@ struct PaymentBiometricsView: View {
                RoundedRectangle(cornerRadius: 20)
                    .fill(
                        (viewModel.activePaymentButton == .ScheduledDate) ?
-                           .blue :
-                               .gray
+                       Color.bgSecondary :
+                           Color.bgSecondary.opacity(0.32)
                    )
                    .frame(height: 50)
                
-               Text("Scheduled Payment Date")
-                   .foregroundColor(.white)
+               Text((viewModel.activePaymentButton == .ScheduledDate) ? "Tap me now" : "Just a simple button")
+                   .foregroundColor((viewModel.activePaymentButton == .ScheduledDate) ? .black : .white)
            }
            .modifier(GlobalPositionModifier())
            .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -192,13 +192,13 @@ struct PaymentBiometricsView: View {
                RoundedRectangle(cornerRadius: 20)
                    .fill(
                        (viewModel.activePaymentButton == .Pay) ?
-                           .blue :
-                               .gray
+                       Color.bgSecondary :
+                           Color.bgSecondary.opacity(0.32)
                    )
                    .frame(width: 100, height: 50)
                
-               Text("Pay")
-                   .foregroundColor(.white)
+               Text((viewModel.activePaymentButton == .Pay) ? "Tap me now" : "Just a simple button")
+                   .foregroundColor((viewModel.activePaymentButton == .Pay) ? .black : .white)
            }
            .modifier(GlobalPositionModifier())
            .onPreferenceChange(GlobalFrameKey.self) { value in

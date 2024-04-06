@@ -10,10 +10,18 @@ import CoreMotion
 
 struct HomeBiometricsView: View {
     
-    @StateObject var viewModel = BiometricViewModel()
+    @ObservedObject var viewModel: BiometricViewModel
     
     @State private var globalFrame: CGRect = .zero
     @State private var globalTap: CGPoint = .zero
+    
+    private var cardSize: CGSize {
+        let scaleFactor: CGFloat = 2
+        let width = UIScreen.main.bounds.width / scaleFactor
+        let aspectRatio = 1.5
+        let height = width * aspectRatio
+        return .init(width: width, height: height)
+    }
     
     private func printInfo() {
         let startX = globalFrame.minX
@@ -32,136 +40,51 @@ struct HomeBiometricsView: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(
-                        (viewModel.activeHomeButton == .Balance) ?
-                            .blue :
-                                .gray
-                    )
-                    .frame(height: 300)
-                
-                Text("Balance")
-                    .foregroundColor(.white)
-            }
-            .modifier(GlobalPositionModifier())
-            .onPreferenceChange(GlobalFrameKey.self) { value in
-                self.globalFrame = value
-            }
-            .onTapGesture(coordinateSpace: .global) { location in
-                self.globalTap = location
-                
-                if viewModel.activeHomeButton == .Balance {
-                    viewModel.taps += 1
-                    print(viewModel.taps)
-                    viewModel.restartTimer()
-                }
-                
-//                printInfo()
-            }
-            
-            Spacer()
-            
-            VStack {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(
-                            (viewModel.activeHomeButton == .Transaction1) ?
-                                .blue :
-                                    .gray
-                        )
-                        .frame(height: 50)
-                    
-                    Text("Transaction 1")
-                        .foregroundColor(.white)
-                }
-                .modifier(GlobalPositionModifier())
-                .onPreferenceChange(GlobalFrameKey.self) { value in
-                    self.globalFrame = value
-                }
-                .onTapGesture(coordinateSpace: .global) { location in
-                    self.globalTap = location
-                    
-                    if viewModel.activeHomeButton == .Transaction1 {
-                        viewModel.taps += 1
-                        print(viewModel.taps)
-                        viewModel.restartTimer()
-                    }
-                    
-//                    printInfo()
-                }
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(
-                            (viewModel.activeHomeButton == .Transaction2) ?
-                                .blue :
-                                    .gray
-                        )
-                        .frame(height: 50)
-                    
-                    Text("Transaction 2")
-                        .foregroundColor(.white)
-                }
-                .modifier(GlobalPositionModifier())
-                .onPreferenceChange(GlobalFrameKey.self) { value in
-                    self.globalFrame = value
-                }
-                .onTapGesture(coordinateSpace: .global) { location in
-                    self.globalTap = location
-                    
-                    if viewModel.activeHomeButton == .Transaction2 {
-                        viewModel.taps += 1
-                        print(viewModel.taps)
-                        viewModel.restartTimer()
-                    }
-                    
-//                    printInfo()
-                }
-                
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(
-                            (viewModel.activeHomeButton == .Transaction3) ?
-                                .blue :
-                                    .gray
-                        )
-                        .frame(height: 50)
-                    
-                    Text("Transaction 3")
-                        .foregroundColor(.white)
-                }
-                .modifier(GlobalPositionModifier())
-                .onPreferenceChange(GlobalFrameKey.self) { value in
-                    self.globalFrame = value
-                }
-                .onTapGesture(coordinateSpace: .global) { location in
-                    self.globalTap = location
-                    
-                    if viewModel.activeHomeButton == .Transaction3 {
-                        viewModel.taps += 1
-                        print(viewModel.taps)
-                        viewModel.restartTimer()
-                    }
-                    
-//                    printInfo()
-                }
-            }
             
             HStack {
-                Spacer()
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(
+                        (viewModel.activeHomeButton == .account) ?
+                        Color.bgSecondary :
+                            Color.bgSecondary.opacity(0.32)
+                    )
+                    .frame(width: 24, height: 24)
+                    .overlay {
+                        Text((viewModel.activeHomeButton == .account) ? "T" : "B")
+                            .font(.KronaOne.regular(size: 12))
+                            .foregroundColor((viewModel.activeHomeButton == .account) ? .black : .white)
+                    }
+                    .modifier(GlobalPositionModifier())
+                    .onPreferenceChange(GlobalFrameKey.self) { value in
+                        self.globalFrame = value
+                    }
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        self.globalTap = location
+                        
+                        if viewModel.activeHomeButton == .account {
+                            viewModel.taps += 1
+                            print(viewModel.taps)
+                            viewModel.restartTimer()
+                        }
+                        //                printInfo()
+                    }
                 
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(
-                            (viewModel.activeHomeButton == .More) ?
-                                .blue :
-                                    .gray
-                        )
-                        .frame(width: 100, height: 40)
-                    
-                    Text("More")
-                        .foregroundColor(.white)
+                Spacer()
+            }.padding(.top, 12)
+            
+            Spacer(minLength: 48)
+            
+            RoundedRectangle(cornerRadius: 20)
+                .fill(
+                    (viewModel.activeHomeButton == .cards) ?
+                    Color.bgSecondary :
+                        Color.bgSecondary.opacity(0.32)
+                )
+                .frame(width: cardSize.width, height: cardSize.height)
+                .overlay {
+                    Text((viewModel.activeHomeButton == .cards) ? "Tap me" : "Button")
+                        .font(.KronaOne.regular(size: 16))
+                        .foregroundColor((viewModel.activeHomeButton == .cards) ? .black : .white)
                 }
                 .modifier(GlobalPositionModifier())
                 .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -170,18 +93,161 @@ struct HomeBiometricsView: View {
                 .onTapGesture(coordinateSpace: .global) { location in
                     self.globalTap = location
                     
-                    if viewModel.activeHomeButton == .More {
+                    if viewModel.activeHomeButton == .cards {
                         viewModel.taps += 1
                         print(viewModel.taps)
                         viewModel.restartTimer()
                     }
+                    //                printInfo()
+                }
+            
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(
+                        (viewModel.activeHomeButton == .details) ?
+                        Color.bgSecondary :
+                            Color.bgSecondary.opacity(0.32)
+                    )
+                    .frame(width: 135, height: 16)
+                    .overlay {
+                        Text((viewModel.activeHomeButton == .details) ? "Tap me" : "Button")
+                            .font(.KronaOne.regular(size: 10))
+                            .foregroundColor((viewModel.activeHomeButton == .details) ? .black : .white)
+                    }
+                    .padding(.top, 8)
+                    .modifier(GlobalPositionModifier())
+                    .onPreferenceChange(GlobalFrameKey.self) { value in
+                        self.globalFrame = value
+                    }
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        self.globalTap = location
+                        
+                        if viewModel.activeHomeButton == .details {
+                            viewModel.taps += 1
+                            print(viewModel.taps)
+                            viewModel.restartTimer()
+                        }
+                        //                printInfo()
+                    }
+            
+            Spacer(minLength: 56)
+            
+            HStack(spacing: 8) {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(
+                        (viewModel.activeHomeButton == .button1) ?
+                        Color.bgSecondary :
+                            Color.bgSecondary.opacity(0.32)
+                    )
+                    .frame(width: 104, height: 40)
+                    .overlay {
+                        Text((viewModel.activeHomeButton == .button1) ? "Tap me" : "Button")
+                            .font(.KronaOne.regular(size: 10))
+                            .foregroundColor((viewModel.activeHomeButton == .button1) ? .black : .white)
+                    }
+                    .modifier(GlobalPositionModifier())
+                    .onPreferenceChange(GlobalFrameKey.self) { value in
+                        self.globalFrame = value
+                    }
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        self.globalTap = location
+                        
+                        if viewModel.activeHomeButton == .button1 {
+                            viewModel.taps += 1
+                            print(viewModel.taps)
+                            viewModel.restartTimer()
+                        }
+                        //                printInfo()
+                    }
+                
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(
+                        (viewModel.activeHomeButton == .button2) ?
+                        Color.bgSecondary :
+                            Color.bgSecondary.opacity(0.32)
+                    )
+                    .frame(width: 104, height: 40)
+                    .overlay {
+                        Text((viewModel.activeHomeButton == .button2) ? "Tap me" : "Button")
+                            .font(.KronaOne.regular(size: 10))
+                            .foregroundColor((viewModel.activeHomeButton == .button2) ? .black : .white)
+                    }
+                    .modifier(GlobalPositionModifier())
+                    .onPreferenceChange(GlobalFrameKey.self) { value in
+                        self.globalFrame = value
+                    }
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        self.globalTap = location
+                        
+                        if viewModel.activeHomeButton == .button2 {
+                            viewModel.taps += 1
+                            print(viewModel.taps)
+                            viewModel.restartTimer()
+                        }
+                        //                printInfo()
+                    }
+                
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(
+                        (viewModel.activeHomeButton == .button3) ?
+                        Color.bgSecondary :
+                            Color.bgSecondary.opacity(0.32)
+                    )
+                    .frame(width: 104, height: 40)
+                    .overlay {
+                        Text((viewModel.activeHomeButton == .button3) ? "Tap me" : "Button")
+                            .font(.KronaOne.regular(size: 10))
+                            .foregroundColor((viewModel.activeHomeButton == .button3) ? .black : .white)
+                    }
+                    .modifier(GlobalPositionModifier())
+                    .onPreferenceChange(GlobalFrameKey.self) { value in
+                        self.globalFrame = value
+                    }
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        self.globalTap = location
+                        
+                        if viewModel.activeHomeButton == .button3 {
+                            viewModel.taps += 1
+                            print(viewModel.taps)
+                            viewModel.restartTimer()
+                        }
+                        //                printInfo()
+                    }
+            }.padding(.bottom, 16)
+            
+            VStack(spacing: 16) {
+                HStack {
+                    Spacer()
                     
-//                    printInfo()
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(
+                            (viewModel.activeHomeButton == .tranzactions) ?
+                            Color.bgSecondary :
+                                Color.bgSecondary.opacity(0.32)
+                        )
+                        .frame(width: 104, height: 40)
+                        .overlay {
+                            Text((viewModel.activeHomeButton == .tranzactions) ? "Tap me" : "Button")
+                                .font(.KronaOne.regular(size: 12))
+                                .foregroundColor((viewModel.activeHomeButton == .tranzactions) ? .black : .white)
+                        }
+                        .modifier(GlobalPositionModifier())
+                        .onPreferenceChange(GlobalFrameKey.self) { value in
+                            self.globalFrame = value
+                        }
+                        .onTapGesture(coordinateSpace: .global) { location in
+                            self.globalTap = location
+                            
+                            if viewModel.activeHomeButton == .tranzactions {
+                                viewModel.taps += 1
+                                print(viewModel.taps)
+                                viewModel.restartTimer()
+                            }
+                            //                printInfo()
+                        }
                 }
                 
-            }
-            
-            Spacer()
-        }
+                Spacer()
+            }.padding(.vertical, 16)
+        }.padding(.horizontal, 16)
     }
 }
