@@ -45,6 +45,10 @@
 		0F224CAF2BC1979F006B6D3E /* SwiftUIBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 0F224CAE2BC1979F006B6D3E /* SwiftUIBottomSheet */; };
 		0F224CB22BC1A85F006B6D3E /* NewLoanScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB12BC1A85F006B6D3E /* NewLoanScreen.swift */; };
 		0F224CB42BC1AA6D006B6D3E /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB32BC1AA6D006B6D3E /* Variant.swift */; };
+		0F224CB62BC1B62A006B6D3E /* FeliciaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB52BC1B62A006B6D3E /* FeliciaAPI.swift */; };
+		0F224CB82BC1B812006B6D3E /* FeliciaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB72BC1B812006B6D3E /* FeliciaService.swift */; };
+		0F224CBA2BC1BA63006B6D3E /* NewFileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB92BC1BA63006B6D3E /* NewFileViewModel.swift */; };
+		0F224CBD2BC1C0B5006B6D3E /* TransferScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CBC2BC1C0B5006B6D3E /* TransferScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +87,10 @@
 		0F224CA12BC1926E006B6D3E /* KronaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KronaOne-Regular.ttf"; sourceTree = "<group>"; };
 		0F224CB12BC1A85F006B6D3E /* NewLoanScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLoanScreen.swift; sourceTree = "<group>"; };
 		0F224CB32BC1AA6D006B6D3E /* Variant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variant.swift; sourceTree = "<group>"; };
+		0F224CB52BC1B62A006B6D3E /* FeliciaAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeliciaAPI.swift; sourceTree = "<group>"; };
+		0F224CB72BC1B812006B6D3E /* FeliciaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeliciaService.swift; sourceTree = "<group>"; };
+		0F224CB92BC1BA63006B6D3E /* NewFileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileViewModel.swift; sourceTree = "<group>"; };
+		0F224CBC2BC1C0B5006B6D3E /* TransferScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +137,7 @@
 				0F224C662BC18C7F006B6D3E /* Models */,
 				0F224C612BC18C43006B6D3E /* Resources */,
 				0F224C5F2BC18C2F006B6D3E /* UI */,
+				0F224CBE2BC1C4D8006B6D3E /* ExpenseRoundup */,
 				0F224C922BC18FA9006B6D3E /* Biometrics */,
 				0F224CB02BC1A845006B6D3E /* Chatbot */,
 				0F224C602BC18C38006B6D3E /* Utils */,
@@ -148,6 +157,7 @@
 		0F224C5D2BC18C1A006B6D3E /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0F224CB52BC1B62A006B6D3E /* FeliciaAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -157,6 +167,7 @@
 			children = (
 				0F224C622BC18C5D006B6D3E /* UserDefaultsService.swift */,
 				0F224C642BC18C6D006B6D3E /* UserService.swift */,
+				0F224CB72BC1B812006B6D3E /* FeliciaService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -168,6 +179,7 @@
 				0F224C822BC18F03006B6D3E /* OnboardingScreen.swift */,
 				0F224C842BC18F09006B6D3E /* Launchscreen */,
 				0F224C892BC18F57006B6D3E /* Home */,
+				0F224CBB2BC1C0A4006B6D3E /* Transfer */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -258,8 +270,24 @@
 			isa = PBXGroup;
 			children = (
 				0F224CB12BC1A85F006B6D3E /* NewLoanScreen.swift */,
+				0F224CB92BC1BA63006B6D3E /* NewFileViewModel.swift */,
 			);
 			path = Chatbot;
+			sourceTree = "<group>";
+		};
+		0F224CBB2BC1C0A4006B6D3E /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				0F224CBC2BC1C0B5006B6D3E /* TransferScreen.swift */,
+			);
+			path = Transfer;
+			sourceTree = "<group>";
+		};
+		0F224CBE2BC1C4D8006B6D3E /* ExpenseRoundup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ExpenseRoundup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,6 +383,8 @@
 				0F224C8D2BC18F79006B6D3E /* HomeViewModel.swift in Sources */,
 				0F224C832BC18F03006B6D3E /* OnboardingScreen.swift in Sources */,
 				0F224C7B2BC18D4D006B6D3E /* LoaderView.swift in Sources */,
+				0F224CBA2BC1BA63006B6D3E /* NewFileViewModel.swift in Sources */,
+				0F224CBD2BC1C0B5006B6D3E /* TransferScreen.swift in Sources */,
 				0F224C6A2BC18C9D006B6D3E /* Transaction.swift in Sources */,
 				0F224C8F2BC18F89006B6D3E /* CardView.swift in Sources */,
 				0F224C7D2BC18D5C006B6D3E /* LoadingScreen.swift in Sources */,
@@ -364,10 +394,12 @@
 				0F224C8B2BC18F6B006B6D3E /* HomeScreen.swift in Sources */,
 				0F224C682BC18C8E006B6D3E /* Card.swift in Sources */,
 				0F224C962BC18FCD006B6D3E /* BiometricViewModel.swift in Sources */,
+				0F224CB62BC1B62A006B6D3E /* FeliciaAPI.swift in Sources */,
 				0F224C9A2BC18FF2006B6D3E /* PaymentBiometricView.swift in Sources */,
 				0F224C652BC18C6D006B6D3E /* UserService.swift in Sources */,
 				0F224C812BC18EF2006B6D3E /* StartScreen.swift in Sources */,
 				0F224CB22BC1A85F006B6D3E /* NewLoanScreen.swift in Sources */,
+				0F224CB82BC1B812006B6D3E /* FeliciaService.swift in Sources */,
 				0F224C982BC18FE3006B6D3E /* TransactionBiometricView.swift in Sources */,
 				0F224C4C2BC18A85006B6D3E /* SceneDelegate.swift in Sources */,
 				0F224C732BC18D14006B6D3E /* Navigation.swift in Sources */,

@@ -66,7 +66,7 @@ struct HomeScreen: View {
                         WidgetActionView(icon: .icSend,
                                          text: "Transfer",
                                          action: {
-                            print("Transfer")
+                            navigation.push(TransferScreen().asDestination(), animated: true)
                         })
                     case 1:
                         WidgetActionView(icon: .icCredit,

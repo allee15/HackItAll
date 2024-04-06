@@ -7,28 +7,10 @@
 
 import SwiftUI
 
-class NewLoanViewModel: BaseViewModel {
-    let variants: [Variant] = [
-        Variant(title: "George", description: "dadafrsfjkdgnfevkfjsdbghvufdhjskzbgvfdjshkjdbgnv"),
-        Variant(title: "George", description: "dadafrsfjkdgnfevkfjsdbghvufdhjskzbgvfdjshkjdbgnv"),
-        Variant(title: "George", description: "dadafrsfjkdgnfevkfjsdbghvufdhjskzbgvfdjshkjdbgnv"),
-        Variant(title: "George", description: "dadafrsfjkdgnfevkfjsdbghvufdhjskzbgvfdjshkjdbgnv"),
-        Variant(title: "George", description: "dadafrsfjkdgnfevkfjsdbghvufdhjskzbgvfdjshkjdbgnv")
-    ]
-    
-    @Published var textMessage: String = ""
-    @Published var messages: [Message] = [Message(message: "Hi, Marian! Unsure what type of loan would fit your needs?")]
-    
-    func sendMessage() {
-        let message = Message(message: textMessage)
-        self.messages.append(message)
-        self.textMessage.removeAll()
-    }
-}
-
 struct NewLoanScreen: View {
     @StateObject private var viewModel = NewLoanViewModel()
     @EnvironmentObject private var navigation: Navigation
+    
     
     var body: some View {
         VStack(spacing: 0) {
@@ -38,25 +20,27 @@ struct NewLoanScreen: View {
             
             ScrollViewReader { scrollProxy in
                 ScrollView(showsIndicators: false) {
-                    if viewModel.textMessage.isEmpty {
-                        ForEach(viewModel.variants, id: \.id) { variant in
-                            Button {
-                                viewModel.textMessage = variant.description
-                            } label: {
-                                NewLoanWidgetView(title: variant.title, description: variant.description)
+                    if viewModel.messagesNotSended {
+                        VStack(alignment: .leading, spacing: 16) {
+                            ForEach(viewModel.variants, id: \.id) { variant in
+                                Button {
+                                    viewModel.textMessage = variant.description
+                                    viewModel.messagesNotSended = false
+                                } label: {
+                                    NewLoanWidgetView(title: variant.title, description: variant.description)
+                                }
                             }
-                            .padding(.bottom, 16)
                         }
                     }
                     
-                    ForEach(viewModel.messages, id: \.id) { message in
-                        let wasSentByMe = viewModel.messages.isEmpty
+                    ForEach(Array(viewModel.messages.enumerated()), id: \.element.id) { index, message in
+                        let wasSentByFelicia = index % 2 == 0
                         VStack(spacing: 0) {
                             HStack(spacing: 8) {
-                                if !wasSentByMe {
+                                if wasSentByFelicia {
                                     Image(.imgFelicia)
                                         .resizable()
-                                        .frame(width: 48, height: 48)
+                                        .frame(width: 48, height: 56)
                                 }
                                 
                                 Text(message.message)
@@ -65,9 +49,9 @@ struct NewLoanScreen: View {
                                     .multilineTextAlignment(.leading)
                                     .padding(.vertical, 8)
                                     .padding(.horizontal, 12)
-                                    .background(wasSentByMe ? Color.chatBg : Color.chatBg.opacity(0.76))
+                                    .background(wasSentByFelicia ? Color.chatBg : Color.chatBg.opacity(0.76))
                                     .cornerRadius(16)
-                                    .frame(width: UIScreen.main.bounds.width * 0.8, alignment: wasSentByMe ? .trailing : .leading)
+                                    .frame(width: UIScreen.main.bounds.width * 0.8, alignment: wasSentByFelicia ? .leading : .trailing)
                                     .id(message.id)
                                     .onChange(of: viewModel.messages.count, perform: { _ in
                                         scrollProxy.scrollTo(viewModel.messages.last?.id)
@@ -78,37 +62,37 @@ struct NewLoanScreen: View {
                     }
                     
                     Spacer(minLength: 100)
-                    
-                    if !viewModel.textMessage.isEmpty {
-                        HStack(spacing: 0) {
-                            TextField("Ask Felicia", text: $viewModel.textMessage, onCommit: {
-                                viewModel.sendMessage()
-                            })
-                            .textFieldStyle(.plain)
-                            .placeHolderMessage(when: viewModel.textMessage.isEmpty) {
-                                Text("")
-                                    .foregroundColor(.clear)
-                            }
-                            
-                            Button {
-                                if !viewModel.textMessage.isEmpty {
-                                    viewModel.sendMessage()
-                                }
-                            } label: {
-                                Image(.icSendBlack)
-                                    .resizable()
-                                    .frame(width: 32, height: 32)
-                            }
-                        }.padding(.horizontal, 12)
-                            .padding(.vertical, 16)
-                            .background(Color.chatBg.opacity(0.76))
-                            .cornerRadius(16, corners: .allCorners)
-                            .padding(.bottom, 20)
-                    }
                 }
             }.padding(.top, 32)
                 .padding(.horizontal, 24)
             
+            if !viewModel.messagesNotSended {
+                HStack(spacing: 0) {
+                    TextField("Ask Felicia", text: $viewModel.textMessage, onCommit: {
+                        viewModel.sendMessage()
+                    })
+                    .textFieldStyle(.plain)
+                    .placeHolderMessage(when: viewModel.textMessage.isEmpty) {
+                        Text("")
+                            .foregroundColor(.clear)
+                    }
+                    
+                    Button {
+                        if !viewModel.textMessage.isEmpty {
+                            viewModel.sendMessage()
+                        }
+                    } label: {
+                        Image(.icSendBlack)
+                            .resizable()
+                            .frame(width: 32, height: 32)
+                    }
+                }.padding(.horizontal, 12)
+                    .padding(.vertical, 16)
+                    .background(Color.chatBg.opacity(0.76))
+                    .cornerRadius(16, corners: .allCorners)
+                    .padding(.bottom, 20)
+                    .padding(.horizontal, 24)
+            }
         }.background(Color.bgPrimary)
     }
 }
@@ -120,19 +104,18 @@ struct NewLoanWidgetView: View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title)
                 .foregroundStyle(Color.white)
-                .font(.KronaOne.regular(size: 16))
+                .font(.KronaOne.regular(size: 12))
                 .multilineTextAlignment(.leading)
             
             Text(description)
                 .foregroundStyle(Color.beigeText)
-                .font(.KronaOne.regular(size: 8))
+                .font(.KronaOne.regular(size: 16))
                 .multilineTextAlignment(.leading)
         }.padding(.vertical, 8)
             .padding(.horizontal, 16)
             .background(Color.bgSecondary.opacity(0.32))
             .cornerRadius(16, corners: .allCorners)
             .border(Color.bgSecondary, width: 1, cornerRadius: 16)
-            .frame(maxWidth: .infinity)
     }
 }
 

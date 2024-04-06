@@ -17,3 +17,9 @@ struct Message {
     let id = UUID()
     let message: String
 }
+
+struct Friend {
+    let id = UUID()
+    let name: String
+    let phone: String
+}
