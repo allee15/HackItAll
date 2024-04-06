@@ -14,6 +14,8 @@ extension Color {
     static let bgSecondary = Color(hex: "#E6D7FF")
     static let bgWidget = Color(hex: "#D7F3FF")
     static let bgBottomSheet = Color(hex: "#544C62")
+    static let beigeText = Color(hex: "#F5F5F5")
+    static let chatBg = Color(hex: "#D7F3FF")
 }
 
 extension Color {

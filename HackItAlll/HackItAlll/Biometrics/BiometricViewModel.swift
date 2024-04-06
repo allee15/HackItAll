@@ -9,12 +9,14 @@ import Foundation
 import CoreMotion
 
 enum HomeButtons: CaseIterable {
-    case None
-    case Balance
-    case Transaction1
-    case Transaction2
-    case Transaction3
-    case More
+    case none
+    case account
+    case cards
+    case details
+    case button1
+    case button2
+    case button3
+    case tranzactions
 }
 
 enum PaymentButtons: CaseIterable {
@@ -37,7 +39,7 @@ enum TransactionsButton: CaseIterable {
 class BiometricViewModel: BaseViewModel {
     @Published var taps = 0
     
-    @Published var activeHomeButton: HomeButtons = .None
+    @Published var activeHomeButton: HomeButtons = .none
     @Published var activePaymentButton: PaymentButtons = .None
     @Published var activeTransactionsButton: TransactionsButton = .None
     
@@ -76,8 +78,8 @@ class BiometricViewModel: BaseViewModel {
     
     func updateActiveButtons() {
         let pastHomeValue = self.activeHomeButton
-        while pastHomeValue == self.activeHomeButton || self.activeHomeButton == .None {
-            self.activeHomeButton = HomeButtons.allCases.randomElement() ?? .None
+        while pastHomeValue == self.activeHomeButton || self.activeHomeButton == .none {
+            self.activeHomeButton = HomeButtons.allCases.randomElement() ?? .none
         }
         
         let pastPaymentValue = self.activePaymentButton

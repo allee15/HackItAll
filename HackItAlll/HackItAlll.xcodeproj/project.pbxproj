@@ -42,6 +42,9 @@
 		0F224CA22BC1926E006B6D3E /* KronaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F224CA12BC1926E006B6D3E /* KronaOne-Regular.ttf */; };
 		0F224CA52BC192C5006B6D3E /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 0F224CA42BC192C5006B6D3E /* BottomSheet */; };
 		0F224CA82BC1932C006B6D3E /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0F224CA72BC1932C006B6D3E /* SwiftyJSON */; };
+		0F224CAF2BC1979F006B6D3E /* SwiftUIBottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 0F224CAE2BC1979F006B6D3E /* SwiftUIBottomSheet */; };
+		0F224CB22BC1A85F006B6D3E /* NewLoanScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB12BC1A85F006B6D3E /* NewLoanScreen.swift */; };
+		0F224CB42BC1AA6D006B6D3E /* Variant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB32BC1AA6D006B6D3E /* Variant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,8 @@
 		0F224C992BC18FF2006B6D3E /* PaymentBiometricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentBiometricView.swift; sourceTree = "<group>"; };
 		0F224C9C2BC19012006B6D3E /* HomeBiometricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBiometricView.swift; sourceTree = "<group>"; };
 		0F224CA12BC1926E006B6D3E /* KronaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KronaOne-Regular.ttf"; sourceTree = "<group>"; };
+		0F224CB12BC1A85F006B6D3E /* NewLoanScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLoanScreen.swift; sourceTree = "<group>"; };
+		0F224CB32BC1AA6D006B6D3E /* Variant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +93,7 @@
 				0F224CA02BC1916E006B6D3E /* Kingfisher in Frameworks */,
 				0F224CA52BC192C5006B6D3E /* BottomSheet in Frameworks */,
 				0F224CA82BC1932C006B6D3E /* SwiftyJSON in Frameworks */,
+				0F224CAF2BC1979F006B6D3E /* SwiftUIBottomSheet in Frameworks */,
 				0F224C592BC18A9A006B6D3E /* netfox in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -124,6 +130,7 @@
 				0F224C612BC18C43006B6D3E /* Resources */,
 				0F224C5F2BC18C2F006B6D3E /* UI */,
 				0F224C922BC18FA9006B6D3E /* Biometrics */,
+				0F224CB02BC1A845006B6D3E /* Chatbot */,
 				0F224C602BC18C38006B6D3E /* Utils */,
 				0F224C4F2BC18A87006B6D3E /* Preview Content */,
 			);
@@ -194,6 +201,7 @@
 			children = (
 				0F224C672BC18C8E006B6D3E /* Card.swift */,
 				0F224C692BC18C9D006B6D3E /* Transaction.swift */,
+				0F224CB32BC1AA6D006B6D3E /* Variant.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,6 +254,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		0F224CB02BC1A845006B6D3E /* Chatbot */ = {
+			isa = PBXGroup;
+			children = (
+				0F224CB12BC1A85F006B6D3E /* NewLoanScreen.swift */,
+			);
+			path = Chatbot;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -267,6 +283,7 @@
 				0F224C9F2BC1916E006B6D3E /* Kingfisher */,
 				0F224CA42BC192C5006B6D3E /* BottomSheet */,
 				0F224CA72BC1932C006B6D3E /* SwiftyJSON */,
+				0F224CAE2BC1979F006B6D3E /* SwiftUIBottomSheet */,
 			);
 			productName = HackItAlll;
 			productReference = 0F224C462BC18A85006B6D3E /* HackItAlll.app */;
@@ -301,6 +318,7 @@
 				0F224C9E2BC1916E006B6D3E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0F224CA32BC192C5006B6D3E /* XCRemoteSwiftPackageReference "BottomSheet" */,
 				0F224CA62BC1932C006B6D3E /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				0F224CAD2BC1979F006B6D3E /* XCRemoteSwiftPackageReference "SwiftUIBottomSheet" */,
 			);
 			productRefGroup = 0F224C472BC18A85006B6D3E /* Products */;
 			projectDirPath = "";
@@ -330,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F224CB42BC1AA6D006B6D3E /* Variant.swift in Sources */,
 				0F224C6C2BC18CAE006B6D3E /* Fonts.swift in Sources */,
 				0F224C752BC18D1F006B6D3E /* BaseViewModel.swift in Sources */,
 				0F224C712BC18D00006B6D3E /* Colors.swift in Sources */,
@@ -348,6 +367,7 @@
 				0F224C9A2BC18FF2006B6D3E /* PaymentBiometricView.swift in Sources */,
 				0F224C652BC18C6D006B6D3E /* UserService.swift in Sources */,
 				0F224C812BC18EF2006B6D3E /* StartScreen.swift in Sources */,
+				0F224CB22BC1A85F006B6D3E /* NewLoanScreen.swift in Sources */,
 				0F224C982BC18FE3006B6D3E /* TransactionBiometricView.swift in Sources */,
 				0F224C4C2BC18A85006B6D3E /* SceneDelegate.swift in Sources */,
 				0F224C732BC18D14006B6D3E /* Navigation.swift in Sources */,
@@ -600,6 +620,14 @@
 				minimumVersion = 5.0.2;
 			};
 		};
+		0F224CAD2BC1979F006B6D3E /* XCRemoteSwiftPackageReference "SwiftUIBottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SyrupMG/SwiftUIBottomSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -622,6 +650,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0F224CA62BC1932C006B6D3E /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		0F224CAE2BC1979F006B6D3E /* SwiftUIBottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F224CAD2BC1979F006B6D3E /* XCRemoteSwiftPackageReference "SwiftUIBottomSheet" */;
+			productName = SwiftUIBottomSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

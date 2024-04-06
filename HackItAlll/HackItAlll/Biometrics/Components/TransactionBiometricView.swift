@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TransactionBiometricsView: View {
     
-    @StateObject var viewModel = BiometricViewModel()
+    @ObservedObject var viewModel: BiometricViewModel
     
     @State private var globalFrame: CGRect = .zero
     @State private var globalTap: CGPoint = .zero
@@ -32,7 +32,7 @@ struct TransactionBiometricsView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(.white)
+                .fill(Color.bgPrimary)
                 .ignoresSafeArea()
             
             VStack {
@@ -41,13 +41,13 @@ struct TransactionBiometricsView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(
                             (viewModel.activeTransactionsButton == .MoreTransaction1) ?
-                                .blue :
-                                    .gray
+                            Color.bgSecondary :
+                                Color.bgSecondary.opacity(0.32)
                         )
                         .frame(height: 50)
                     
-                    Text("Transaction 1")
-                        .foregroundColor(.white)
+                    Text((viewModel.activeTransactionsButton == .MoreTransaction1) ? "Tap me now" : "Just a simple button")
+                        .foregroundColor((viewModel.activeTransactionsButton == .MoreTransaction1) ? .black : .white)
                 }
                 .modifier(GlobalPositionModifier())
                 .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -70,13 +70,13 @@ struct TransactionBiometricsView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(
                             (viewModel.activeTransactionsButton == .MoreTransaction2) ?
-                                .blue :
-                                    .gray
+                            Color.bgSecondary :
+                                Color.bgSecondary.opacity(0.32)
                         )
                         .frame(height: 50)
                     
-                    Text("Transaction 2")
-                        .foregroundColor(.white)
+                    Text((viewModel.activeTransactionsButton == .MoreTransaction2) ? "Tap me now" : "Just a simple button")
+                        .foregroundColor((viewModel.activeTransactionsButton == .MoreTransaction2) ? .black : .white)
                 }
                 .modifier(GlobalPositionModifier())
                 .onPreferenceChange(GlobalFrameKey.self) { value in
@@ -99,13 +99,13 @@ struct TransactionBiometricsView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(
                             (viewModel.activeTransactionsButton == .MoreTransaction3) ?
-                                .blue :
-                                    .gray
+                            Color.bgSecondary :
+                                Color.bgSecondary.opacity(0.32)
                         )
                         .frame(height: 50)
                     
-                    Text("Transaction 3")
-                        .foregroundColor(.white)
+                    Text((viewModel.activeTransactionsButton == .MoreTransaction3) ? "Tap me now" : "Just a simple button")
+                        .foregroundColor((viewModel.activeTransactionsButton == .MoreTransaction3) ? .black : .white)
                 }
                 .modifier(GlobalPositionModifier())
                 .onPreferenceChange(GlobalFrameKey.self) { value in

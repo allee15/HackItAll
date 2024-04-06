@@ -19,6 +19,16 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape( RoundedCorner(radius: radius, corners: corners) )
     }
+    
+    func placeHolderMessage<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeHolder: () -> Content) -> some View {
+            ZStack(alignment: alignment) {
+                placeHolder().opacity(shouldShow ? 1 : 0)
+                self
+            }
+        }
 }
 
 struct RoundedCorner: Shape {
