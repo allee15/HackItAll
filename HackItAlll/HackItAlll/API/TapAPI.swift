@@ -12,12 +12,21 @@ import Combine
 class TapAPI {
     
     static let shared = TapAPI()
+    var allTaps: [Float] = []
     
     private init() {}
     
-    public func postTapOnce( xStart: Float, yStart: Float, xEnd: Float, yEnd: Float, x: Float, y: Float, roll: Float, pitch: Float, yaw: Float) -> Future<Bool, Error> {
+    public func postTapOnce( xStart: Float, yStart: Float, xEnd: Float, yEnd: Float, x: Float, y: Float, roll: Float, pitch: Float) -> Future<Bool, Error> {
         
         Future<Bool, Error> { promise in
+            self.allTaps.append(xStart)
+            self.allTaps.append(yStart)
+            self.allTaps.append(xEnd)
+            self.allTaps.append(yEnd)
+            self.allTaps.append(x)
+            self.allTaps.append(y)
+            self.allTaps.append(roll)
+            self.allTaps.append(pitch)
             
             var urlComponents = URLComponents(string: "http://127.0.0.1:\(PORT)/tap")
             urlComponents?.queryItems = [
@@ -27,8 +36,7 @@ class TapAPI {
                 URLQueryItem(name: "y_end", value:  String(yEnd)),
                 URLQueryItem(name: "x", value:  String(x)),
                 URLQueryItem(name: "y", value: String(y)),
-                URLQueryItem(name: "roll", value:  String(roll)),
-                URLQueryItem(name: "pitch", value:  String(pitch)),
+                URLQueryItem(name: "roll", value:  String(roll))
             ]
             
             var urlRequest = URLRequest(url: urlComponents!.url!)
@@ -56,11 +64,11 @@ class TapAPI {
         }
     }
 
-    public func postAllTaps(coords: [Float]) -> Future<Bool, Error> {
+    public func postAllTaps() -> Future<Bool, Error> {
         Future<Bool, Error> { promise in
             
             var urlComponents = URLComponents(string: "http://127.0.0.1:\(PORT)/tap_all")
-            let coordsAsString = coords.map({String($0)})
+            let coordsAsString = self.allTaps.map({String($0)})
             urlComponents?.queryItems = [
                 URLQueryItem(name: "all_coords", value:  coordsAsString.joined(separator: ","))
             ]

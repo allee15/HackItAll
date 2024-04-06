@@ -17,19 +17,16 @@ struct HomeScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Button {
-                    self.showBottomSheet = true
-                } label: {
-                    Image(.icAccount)
-                        .resizable()
-                        .frame(width: 24, height: 24)
-                }.modifier(GlobalPositionModifier())
+                Image(.icAccount)
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    .modifier(GlobalPositionModifier())
                     .onPreferenceChange(GlobalFrameKey.self) { value in
                         viewModel.globalFrame = value
                     }
                     .onTapGesture(coordinateSpace: .global) { location in
-                        viewModel.globalTap = location
-                        viewModel.printInfo()
+                        viewModel.printInfo(location: location)
+                        self.showBottomSheet = true
                     }
                 
                 Spacer()
@@ -56,20 +53,18 @@ struct HomeScreen: View {
                     viewModel.globalFrame = value
                 }
                 .onTapGesture(coordinateSpace: .global) { location in
-                    viewModel.globalTap = location
-                    viewModel.printInfo()
+                    viewModel.printInfo(location: location)
                 }
             
-            ShowDetailsButtonView(showDetails: $showDetails) {
-                self.showDetails.toggle()
-            }.padding(.vertical, 16)
+            ShowDetailsButtonView(showDetails: $showDetails)
+                .padding(.vertical, 16)
                 .modifier(GlobalPositionModifier())
                 .onPreferenceChange(GlobalFrameKey.self) { value in
                     viewModel.globalFrame = value
                 }
                 .onTapGesture(coordinateSpace: .global) { location in
-                    viewModel.globalTap = location
-                    viewModel.printInfo()
+                    viewModel.printInfo(location: location)
+                    self.showDetails.toggle()
                 }
             
             HStack {
@@ -86,40 +81,35 @@ struct HomeScreen: View {
                     switch index {
                     case 0:
                         WidgetActionView(icon: .icSend,
-                                         text: "Transfer",
-                                         action: {
+                                         text: "Transfer")
+                        .modifier(GlobalPositionModifier())
+                        .onPreferenceChange(GlobalFrameKey.self) { value in
+                            viewModel.globalFrame = value
+                        }
+                        .onTapGesture(coordinateSpace: .global) { location in
+                            viewModel.printInfo(location: location)
                             navigation.push(TransferScreen().asDestination(), animated: true)
-                        }).modifier(GlobalPositionModifier())
-                            .onPreferenceChange(GlobalFrameKey.self) { value in
-                                viewModel.globalFrame = value
-                            }
-                            .onTapGesture(coordinateSpace: .global) { location in
-                                viewModel.globalTap = location
-                                viewModel.printInfo()
-                            }
+                        }
                     case 1:
                         WidgetActionView(icon: .icCredit,
-                                         text: "Loans") {
+                                         text: "Loans")
+                        .modifier(GlobalPositionModifier())
+                        .onPreferenceChange(GlobalFrameKey.self) { value in
+                            viewModel.globalFrame = value
+                        }
+                        .onTapGesture(coordinateSpace: .global) { location in
+                            viewModel.printInfo(location: location)
                             navigation.push(NewLoanScreen().asDestination(), animated: true)
-                        }.modifier(GlobalPositionModifier())
-                            .onPreferenceChange(GlobalFrameKey.self) { value in
-                                viewModel.globalFrame = value
-                            }
-                            .onTapGesture(coordinateSpace: .global) { location in
-                                viewModel.globalTap = location
-                                viewModel.printInfo()
-                            }
+                        }
                     case 2:
                         WidgetActionView(icon: .icExpense,
-                                         text: "Expense Roundup") {
-                            navigation.push(ExpenseRoundupScreen(index: viewModel.selectedCard.id).asDestination(), animated: true)
-                        }.modifier(GlobalPositionModifier())
+                                         text: "Expense Roundup").modifier(GlobalPositionModifier())
                             .onPreferenceChange(GlobalFrameKey.self) { value in
                                 viewModel.globalFrame = value
                             }
                             .onTapGesture(coordinateSpace: .global) { location in
-                                viewModel.globalTap = location
-                                viewModel.printInfo()
+                                viewModel.printInfo(location: location)
+                                navigation.push(ExpenseRoundupScreen(index: viewModel.selectedCard.id).asDestination(), animated: true)
                             }
                     default:
                         EmptyView()
@@ -129,16 +119,15 @@ struct HomeScreen: View {
             
             let transactions = viewModel.getTransactionsForCard()
             let firstTransactions = Array(transactions.prefix(4))
-            TransactionsView(transactions: firstTransactions) {
-                navigation.push(TransactionsScreen(transactions: transactions).asDestination(),
-                                animated: true)
-            }.modifier(GlobalPositionModifier())
+            TransactionsView(transactions: firstTransactions)
+                .modifier(GlobalPositionModifier())
                 .onPreferenceChange(GlobalFrameKey.self) { value in
                     viewModel.globalFrame = value
                 }
                 .onTapGesture(coordinateSpace: .global) { location in
-                    viewModel.globalTap = location
-                    viewModel.printInfo()
+                    viewModel.printInfo(location: location)
+                    navigation.push(TransactionsScreen(transactions: transactions).asDestination(),
+                                    animated: true)
                 }
         }.padding(.horizontal, 20)
             .background(Color.bgPrimary)
@@ -166,55 +155,47 @@ struct HomeScreen: View {
 
 struct ShowDetailsButtonView: View {
     @Binding var showDetails: Bool
-    let action: () -> ()
+    
     var body: some View {
-        Button {
-            action()
-        } label: {
-            HStack(spacing: 4) {
-                Image(!showDetails ? .icShowDetails : .icHideDetails)
-                    .resizable()
-                    .frame(width: 16, height: 16)
-                
-                Text(!showDetails ? "Show details" : "Hide details")
-                    .font(.KronaOne.regular(size: 10))
-                    .foregroundStyle(Color.bgPrimary)
-            }.padding(.leading, 8)
-                .padding(.trailing, 16)
-                .background(Color.bgSecondary)
-                .cornerRadius(16, corners: .allCorners)
-        }
+        HStack(spacing: 4) {
+            Image(!showDetails ? .icShowDetails : .icHideDetails)
+                .resizable()
+                .frame(width: 16, height: 16)
+            
+            Text(!showDetails ? "Show details" : "Hide details")
+                .font(.KronaOne.regular(size: 10))
+                .foregroundStyle(Color.bgPrimary)
+        }.padding(.leading, 8)
+            .padding(.trailing, 16)
+            .background(Color.bgSecondary)
+            .cornerRadius(16, corners: .allCorners)
     }
 }
 
 struct WidgetActionView: View {
     let icon: ImageResource
     let text: String
-    let action: () -> ()
+    
     var body: some View {
-        Button {
-            action()
-        } label: {
-            HStack(spacing: 8) {
-                Image(icon)
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                
-                Text(text)
-                    .font(.KronaOne.regular(size: 10))
-                    .foregroundStyle(Color.white)
-                    .fixedSize(horizontal: false, vertical: true)
-            }.padding(.vertical, 8)
-                .padding(.horizontal, 12)
-                .background(Color.bgWidget.opacity(0.61))
-                .cornerRadius(16, corners: .allCorners)
-        }
+        HStack(spacing: 8) {
+            Image(icon)
+                .resizable()
+                .frame(width: 20, height: 20)
+            
+            Text(text)
+                .font(.KronaOne.regular(size: 10))
+                .foregroundStyle(Color.white)
+                .fixedSize(horizontal: false, vertical: true)
+        }.padding(.vertical, 8)
+            .padding(.horizontal, 12)
+            .background(Color.bgWidget.opacity(0.61))
+            .cornerRadius(16, corners: .allCorners)
     }
 }
 
 struct TransactionsView: View {
     let transactions: [Transaction]
-    let action: () -> ()
+    
     var body: some View {
         VStack(spacing: 16) {
             HStack {
@@ -224,14 +205,10 @@ struct TransactionsView: View {
                 
                 Spacer()
                 
-                Button {
-                    action()
-                } label: {
-                    Text("See all")
-                        .underline()
-                        .font(.KronaOne.regular(size: 12))
-                        .foregroundStyle(Color.white)
-                }
+                Text("See all")
+                    .underline()
+                    .font(.KronaOne.regular(size: 12))
+                    .foregroundStyle(Color.white)
             }
             
             ScrollView(showsIndicators: false) {

@@ -9,23 +9,19 @@ import SwiftUI
 
 struct BackButton: View {
     let text: String
-    let action: () -> ()
+    
     var body: some View {
-        Button {
-            action()
-        } label: {
-            HStack {
-                Image(.icArrowLeft)
-                    .resizable()
-                    .frame(width: 12, height: 16)
-                    .padding(.trailing, 8)
-                
-                Text(text)
-                    .font(.KronaOne.regular(size: 20))
-                    .foregroundStyle(Color.white)
-                
-                Spacer()
-            }
+        HStack {
+            Image(.icArrowLeft)
+                .resizable()
+                .frame(width: 12, height: 16)
+                .padding(.trailing, 8)
+            
+            Text(text)
+                .font(.KronaOne.regular(size: 20))
+                .foregroundStyle(Color.white)
+            
+            Spacer()
         }
     }
 }

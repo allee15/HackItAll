@@ -19,6 +19,7 @@ class HomeViewModel: BaseViewModel {
     
     let motionManager = CMMotionManager()
     var data: [Float] = []
+    var response: Bool = false
     
     let cards: [Card] = [
         Card(id: 0,
@@ -90,7 +91,8 @@ class HomeViewModel: BaseViewModel {
         data.append(zRot)
     }
     
-    func printInfo() {
+    func printInfo(location: CGPoint) {
+        self.globalTap = location
         let startX = globalFrame.minX
         let startY = globalFrame.minY
         let endX = globalFrame.maxX
@@ -103,6 +105,14 @@ class HomeViewModel: BaseViewModel {
         print("Tap Coordinates: (\(tapX), \(tapY))")
         print("Roll Degrees: \(rollDegrees)")
         print("Pitch Degrees: \(pitchDegrees)")
+        
+        TapService.shared.postTapOnce(xStart: Float(startX), yStart: Float(startY), xEnd: Float(endX), yEnd: Float(endY), x: Float(tapX), y: Float(tapY), roll: Float(rollDegrees), pitch: Float(pitchDegrees))
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                
+            } receiveValue: { [weak self] result in
+                self?.response = result
+            }.store(in: &bag)
     }
 }
 

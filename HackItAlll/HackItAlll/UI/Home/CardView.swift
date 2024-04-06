@@ -32,6 +32,7 @@ struct CardsCarouselView: View {
     @Binding var selectedCard: Card
     @State private var offset: CGFloat = .zero
     private let cardOffset: CGFloat = 65
+    
     var body: some View {
         ZStack {
             ForEach(self.cards, id: \.id) { card in

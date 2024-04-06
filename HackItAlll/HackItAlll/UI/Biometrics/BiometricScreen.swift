@@ -11,6 +11,7 @@ struct BiometricScreen: View {
     
     @StateObject var viewModel = BiometricViewModel()
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var navigation: Navigation
     
     var body: some View {
         ZStack {
@@ -31,10 +32,20 @@ struct BiometricScreen: View {
                     ExpenseRoundupBiometricView(viewModel: viewModel)
                     
                 default:
+                    let _ = viewModel.postAllTaps()
                     let _ = dismiss()
                 }
             }
             .padding(20)
+        }.onReceive(viewModel.eventSubject) { event in
+            switch event {
+            case .completed:
+                navigation.replaceNavigationStack([HomeScreen().asDestination()], animated: true)
+            case .loading:
+                navigation.push(LoadingScreen().asDestination(), animated: true)
+            case .failure(_):
+                navigation.replaceNavigationStack([HomeScreen().asDestination()], animated: true)
+            }
         }
     }
 }

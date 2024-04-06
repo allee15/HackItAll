@@ -13,13 +13,13 @@ class TapService: BaseViewModel {
     
     private override init() {}
     
-    public func postTapOnce( xStart: Float, yStart: Float, xEnd: Float, yEnd: Float, x: Float, y: Float, roll: Float, pitch: Float, yaw: Float) -> AnyPublisher<Bool, Error> {
-        return TapAPI.shared.postTapOnce(xStart: xStart, yStart: yStart, xEnd: xEnd, yEnd: yEnd, x: x, y: y, roll: roll, pitch: pitch, yaw: yaw)
+    public func postTapOnce( xStart: Float, yStart: Float, xEnd: Float, yEnd: Float, x: Float, y: Float, roll: Float, pitch: Float) -> AnyPublisher<Bool, Error> {
+        return TapAPI.shared.postTapOnce(xStart: xStart, yStart: yStart, xEnd: xEnd, yEnd: yEnd, x: x, y: y, roll: roll, pitch: pitch)
         .eraseToAnyPublisher()
     }
 
-    public func postAllTaps(coords: [Float]) -> AnyPublisher<Bool, Error> {
-        return TapAPI.shared.postAllTaps(coords: coords)
+    public func postAllTaps() -> AnyPublisher<Bool, Error> {
+        return TapAPI.shared.postAllTaps()
         .eraseToAnyPublisher()
     }
 

@@ -14,8 +14,10 @@ struct TransactionsScreen: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            BackButton(text: "Transactions") {
+            Button {
                 navigation.pop(animated: true)
+            } label: {
+                BackButton(text: "Transactions") 
             }.padding(.bottom, 16)
             .padding(.horizontal, 24)
             

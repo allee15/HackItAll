@@ -33,6 +33,14 @@ class NewLoanViewModel: BaseViewModel {
             }
             .store(in: &self.bag)
         
+        FeliciaService.shared.getFeliciaFromConversation(conversation: messages, prompt: textMessage)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                
+            } receiveValue: { [weak self] message in
+                self?.messages.append(message)
+            }.store(in: &self.bag)
+
         self.textMessage = ""
     }
 }

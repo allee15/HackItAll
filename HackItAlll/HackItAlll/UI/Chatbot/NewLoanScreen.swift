@@ -14,9 +14,11 @@ struct NewLoanScreen: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            BackButton(text: viewModel.textMessage.isEmpty ? "Get new loan" : "Chat with Felicia") {
+            Button {
                 navigation.pop(animated: true)
-            }.padding(.horizontal, 24)
+            } label: {
+                BackButton(text: viewModel.textMessage.isEmpty ? "Get new loan" : "Chat with Felicia") 
+            }
             
             ScrollViewReader { scrollProxy in
                 ScrollView(showsIndicators: false) {
@@ -30,8 +32,10 @@ struct NewLoanScreen: View {
                                     NewLoanWidgetView(title: variant.title, description: variant.description)
                                 }
                             }
-                        }
+                        }.padding(.top, 32)
                     }
+                    
+                    Spacer(minLength: 100)
                     
                     ForEach(Array(viewModel.messages.enumerated()), id: \.element.id) { index, message in
                         let wasSentByFelicia = index % 2 == 0
@@ -60,11 +64,8 @@ struct NewLoanScreen: View {
                         }.padding(.horizontal, 8)
                             .padding(.bottom, 12)
                     }
-                    
-                    Spacer(minLength: 100)
                 }
-            }.padding(.top, 32)
-                .padding(.horizontal, 24)
+            }
             
             if !viewModel.messagesNotSended {
                 HStack(spacing: 0) {
@@ -91,9 +92,10 @@ struct NewLoanScreen: View {
                     .background(Color.chatBg.opacity(0.76))
                     .cornerRadius(16, corners: .allCorners)
                     .padding(.bottom, 20)
-                    .padding(.horizontal, 24)
+                    
             }
-        }.background(Color.bgPrimary)
+        }.padding(.horizontal, 24)
+            .background(Color.bgPrimary)
     }
 }
 
@@ -109,13 +111,14 @@ struct NewLoanWidgetView: View {
             
             Text(description)
                 .foregroundStyle(Color.beigeText)
-                .font(.KronaOne.regular(size: 16))
+                .font(.KronaOne.regular(size: 14))
                 .multilineTextAlignment(.leading)
         }.padding(.vertical, 8)
             .padding(.horizontal, 16)
             .background(Color.bgSecondary.opacity(0.32))
             .cornerRadius(16, corners: .allCorners)
             .border(Color.bgSecondary, width: 1, cornerRadius: 16)
+            .padding(.horizontal, 20)
     }
 }
 

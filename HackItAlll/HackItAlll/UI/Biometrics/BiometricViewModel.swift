@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreMotion
+import Combine
 
 enum HomeButtons: CaseIterable {
     case none
@@ -37,6 +38,12 @@ enum TransactionsButton: CaseIterable {
     case item3
 }
 
+enum TapSendingCompletion {
+    case completed
+    case loading
+    case failure(Error)
+}
+
 class BiometricViewModel: BaseViewModel {
     @Published var taps = 0
     
@@ -46,6 +53,8 @@ class BiometricViewModel: BaseViewModel {
     
     @Published var rollDegrees = 0.0
     @Published var pitchDegrees = 0.0
+    
+    let eventSubject = PassthroughSubject<TapSendingCompletion, Never>()
     
     var timer = Timer()
     
@@ -121,5 +130,22 @@ class BiometricViewModel: BaseViewModel {
         data.append(xRot)
         data.append(yRot)
         data.append(zRot)
+    }
+    
+    func postAllTaps() {
+        eventSubject.send(.loading)
+        
+        TapService.shared.postAllTaps()
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    self.eventSubject.send(.failure(error))
+                }
+            } receiveValue: { [weak self] result in
+                self?.eventSubject.send(.completed)
+            }.store(in: &bag)
     }
 }
