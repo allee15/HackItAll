@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-class TransferVewModel: BaseViewModel {
-    let friendsList: [Friend] = [
-        Friend(name: "Mirel", phone: "0712 121 121"),
-        Friend(name: "Marcel", phone: "0712 121 121"),
-        Friend(name: "Dorel", phone: "0712 121 121"),
-        Friend(name: "Sorin", phone: "0712 121 121"),
-        Friend(name: "Vicentiu", phone: "0712 121 121")
-        ]
-}
-
 struct TransferScreen: View {
     @StateObject private var viewModel = TransferVewModel()
     @EnvironmentObject private var navigation: Navigation
@@ -27,6 +17,14 @@ struct TransferScreen: View {
                 navigation.pop(animated: true)
             }.padding(.bottom, 8)
                 .padding(.horizontal, 24)
+                .modifier(GlobalPositionModifier())
+                .onPreferenceChange(GlobalFrameKey.self) { value in
+                    viewModel.globalFrame = value
+                }
+                .onTapGesture(coordinateSpace: .global) { location in
+                    viewModel.globalTap = location
+                    viewModel.printInfo()
+                }
             
             HStack {
                 Text("Recent transfers")
@@ -76,6 +74,14 @@ struct TransferScreen: View {
                     }
                     .padding(.horizontal, 24)
                     .padding(.bottom, 16)
+                    .modifier(GlobalPositionModifier())
+                    .onPreferenceChange(GlobalFrameKey.self) { value in
+                        viewModel.globalFrame = value
+                    }
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        viewModel.globalTap = location
+                        viewModel.printInfo()
+                    }
                 }
                 
                 Spacer(minLength: 80)
@@ -90,14 +96,14 @@ struct FriendCardView: View {
     let action: () -> ()
     var body: some View {
         Button {
-           action()
+            action()
         } label: {
             VStack(spacing: 8) {
                 Image(.imgSmiley)
                     .resizable()
                     .frame(width: 64, height: 64)
                     .padding(.all, 12)
-                    .background(Color(hex: "#D9D9D9"))
+                    .background(Color(hex: "#F5F5F5"))
                     .cornerRadius(16, corners: .allCorners)
                 
                 Text(index)

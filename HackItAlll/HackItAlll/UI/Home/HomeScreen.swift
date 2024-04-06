@@ -23,14 +23,21 @@ struct HomeScreen: View {
                     Image(.icAccount)
                         .resizable()
                         .frame(width: 24, height: 24)
-                }
+                }.modifier(GlobalPositionModifier())
+                    .onPreferenceChange(GlobalFrameKey.self) { value in
+                        viewModel.globalFrame = value
+                    }
+                    .onTapGesture(coordinateSpace: .global) { location in
+                        viewModel.globalTap = location
+                        viewModel.printInfo()
+                    }
                 
                 Spacer()
                 
                 Text("Your cards")
                     .font(.KronaOne.regular(size: 20))
                     .foregroundStyle(Color.white)
-                    
+                
                 Spacer()
             }.padding(.top, 12)
             
@@ -39,16 +46,31 @@ struct HomeScreen: View {
             CardsCarouselView(
                 showDetails: $showDetails,
                 cards: viewModel.cards,
-                      selectedCard: Binding(get: {
-                        viewModel.selectedCard
-                      }, set: { card in
-                        viewModel.selectedCard = card
-                      })
-            )
+                selectedCard: Binding(get: {
+                    viewModel.selectedCard
+                }, set: { card in
+                    viewModel.selectedCard = card
+                })
+            ).modifier(GlobalPositionModifier())
+                .onPreferenceChange(GlobalFrameKey.self) { value in
+                    viewModel.globalFrame = value
+                }
+                .onTapGesture(coordinateSpace: .global) { location in
+                    viewModel.globalTap = location
+                    viewModel.printInfo()
+                }
             
             ShowDetailsButtonView(showDetails: $showDetails) {
                 self.showDetails.toggle()
             }.padding(.vertical, 16)
+                .modifier(GlobalPositionModifier())
+                .onPreferenceChange(GlobalFrameKey.self) { value in
+                    viewModel.globalFrame = value
+                }
+                .onTapGesture(coordinateSpace: .global) { location in
+                    viewModel.globalTap = location
+                    viewModel.printInfo()
+                }
             
             HStack {
                 Text("Balance: \(viewModel.selectedCard.balance) RON")
@@ -67,29 +89,57 @@ struct HomeScreen: View {
                                          text: "Transfer",
                                          action: {
                             navigation.push(TransferScreen().asDestination(), animated: true)
-                        })
+                        }).modifier(GlobalPositionModifier())
+                            .onPreferenceChange(GlobalFrameKey.self) { value in
+                                viewModel.globalFrame = value
+                            }
+                            .onTapGesture(coordinateSpace: .global) { location in
+                                viewModel.globalTap = location
+                                viewModel.printInfo()
+                            }
                     case 1:
                         WidgetActionView(icon: .icCredit,
                                          text: "Loans") {
                             navigation.push(NewLoanScreen().asDestination(), animated: true)
-                        }
+                        }.modifier(GlobalPositionModifier())
+                            .onPreferenceChange(GlobalFrameKey.self) { value in
+                                viewModel.globalFrame = value
+                            }
+                            .onTapGesture(coordinateSpace: .global) { location in
+                                viewModel.globalTap = location
+                                viewModel.printInfo()
+                            }
                     case 2:
                         WidgetActionView(icon: .icExpense,
                                          text: "Expense Roundup") {
-                            print("Expense Roundup")
-                        }
+                            navigation.push(ExpenseRoundupScreen(index: viewModel.selectedCard.id).asDestination(), animated: true)
+                        }.modifier(GlobalPositionModifier())
+                            .onPreferenceChange(GlobalFrameKey.self) { value in
+                                viewModel.globalFrame = value
+                            }
+                            .onTapGesture(coordinateSpace: .global) { location in
+                                viewModel.globalTap = location
+                                viewModel.printInfo()
+                            }
                     default:
                         EmptyView()
                     }
                 }
             }.padding(.bottom, 16)
-             
+            
             let transactions = viewModel.getTransactionsForCard()
             let firstTransactions = Array(transactions.prefix(4))
             TransactionsView(transactions: firstTransactions) {
                 navigation.push(TransactionsScreen(transactions: transactions).asDestination(),
                                 animated: true)
-            }
+            }.modifier(GlobalPositionModifier())
+                .onPreferenceChange(GlobalFrameKey.self) { value in
+                    viewModel.globalFrame = value
+                }
+                .onTapGesture(coordinateSpace: .global) { location in
+                    viewModel.globalTap = location
+                    viewModel.printInfo()
+                }
         }.padding(.horizontal, 20)
             .background(Color.bgPrimary)
             .frame(maxWidth: .infinity, maxHeight: .infinity)

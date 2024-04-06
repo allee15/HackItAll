@@ -17,4 +17,9 @@ class FeliciaService: BaseViewModel {
         return FeliciaAPI.shared.getFelicia(prompt: prompt)
             .eraseToAnyPublisher()
     }
+    
+    public func getFeliciaFromConversation(conversation: [Message], prompt: String) -> AnyPublisher<Message, Error> {
+        return FeliciaAPI.shared.getFeliciaFromConversation(conversation: conversation, prompt: prompt)
+            .eraseToAnyPublisher()
+    }
 }

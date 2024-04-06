@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Transaction: Identifiable {
     let id: Int
@@ -17,3 +18,12 @@ struct CardTransaction {
     let idCard: Int
     let transactions: [Transaction]
 }
+
+struct ExpenseRoundup {
+    let id: Int
+    let item: String
+    let amount: Double
+    let color: Color
+    let percentage: Int
+}
+

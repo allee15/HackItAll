@@ -66,7 +66,7 @@ struct HomeBiometricsView: View {
                             print(viewModel.taps)
                             viewModel.restartTimer()
                         }
-                        //                printInfo()
+                        printInfo()
                     }
                 
                 Spacer()
@@ -98,7 +98,7 @@ struct HomeBiometricsView: View {
                         print(viewModel.taps)
                         viewModel.restartTimer()
                     }
-                    //                printInfo()
+                    printInfo()
                 }
             
                 RoundedRectangle(cornerRadius: 16)
@@ -126,7 +126,7 @@ struct HomeBiometricsView: View {
                             print(viewModel.taps)
                             viewModel.restartTimer()
                         }
-                        //                printInfo()
+                        printInfo()
                     }
             
             Spacer(minLength: 56)
@@ -156,7 +156,7 @@ struct HomeBiometricsView: View {
                             print(viewModel.taps)
                             viewModel.restartTimer()
                         }
-                        //                printInfo()
+                        printInfo()
                     }
                 
                 RoundedRectangle(cornerRadius: 16)
@@ -183,7 +183,7 @@ struct HomeBiometricsView: View {
                             print(viewModel.taps)
                             viewModel.restartTimer()
                         }
-                        //                printInfo()
+                        printInfo()
                     }
                 
                 RoundedRectangle(cornerRadius: 16)
@@ -210,7 +210,7 @@ struct HomeBiometricsView: View {
                             print(viewModel.taps)
                             viewModel.restartTimer()
                         }
-                        //                printInfo()
+                        printInfo()
                     }
             }.padding(.bottom, 16)
             
@@ -242,7 +242,7 @@ struct HomeBiometricsView: View {
                                 print(viewModel.taps)
                                 viewModel.restartTimer()
                             }
-                            //                printInfo()
+                            printInfo()
                         }
                 }
                 

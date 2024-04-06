@@ -25,10 +25,10 @@ struct BiometricScreen: View {
                     HomeBiometricsView(viewModel: viewModel)
                     
                 case 20..<40:
-                    PaymentBiometricsView(viewModel: viewModel)
+                    TransferBiometricView(viewModel: viewModel)
 
                 case 40..<60:
-                    TransactionBiometricsView(viewModel: viewModel)
+                    ExpenseRoundupBiometricView(viewModel: viewModel)
                     
                 default:
                     let _ = dismiss()

@@ -20,28 +20,29 @@ enum HomeButtons: CaseIterable {
 }
 
 enum PaymentButtons: CaseIterable {
-    case None
-    case Iban
-    case Amount
-    case Currency
-    case Message
-    case ScheduledDate
-    case Pay
+    case none
+    case back
+    case friend1
+    case friend2
+    case friend3
+    case friend4
+    case friend5
 }
 
 enum TransactionsButton: CaseIterable {
-    case None
-    case MoreTransaction1
-    case MoreTransaction2
-    case MoreTransaction3
+    case none
+    case back
+    case item1
+    case item2
+    case item3
 }
 
 class BiometricViewModel: BaseViewModel {
     @Published var taps = 0
     
     @Published var activeHomeButton: HomeButtons = .none
-    @Published var activePaymentButton: PaymentButtons = .None
-    @Published var activeTransactionsButton: TransactionsButton = .None
+    @Published var activeTransferButton: PaymentButtons = .none
+    @Published var activeExpenseButton: TransactionsButton = .none
     
     @Published var rollDegrees = 0.0
     @Published var pitchDegrees = 0.0
@@ -82,14 +83,14 @@ class BiometricViewModel: BaseViewModel {
             self.activeHomeButton = HomeButtons.allCases.randomElement() ?? .none
         }
         
-        let pastPaymentValue = self.activePaymentButton
-        while pastPaymentValue == self.activePaymentButton || self.activePaymentButton == .None {
-            self.activePaymentButton = PaymentButtons.allCases.randomElement() ?? .None
+        let pastTransferButton = self.activeTransferButton
+        while pastTransferButton == self.activeTransferButton || self.activeTransferButton == .none {
+            self.activeTransferButton = PaymentButtons.allCases.randomElement() ?? .none
         }
         
-        let pastTransactionsValue = self.activeTransactionsButton
-        while pastTransactionsValue == self.activeTransactionsButton || self.activeTransactionsButton == .None {
-            self.activeTransactionsButton = TransactionsButton.allCases.randomElement() ?? .None
+        let pastTransactionsValue = self.activeExpenseButton
+        while pastTransactionsValue == self.activeExpenseButton || self.activeExpenseButton == .none {
+            self.activeExpenseButton = TransactionsButton.allCases.randomElement() ?? .none
         }
     }
     

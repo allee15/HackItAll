@@ -35,8 +35,8 @@
 		0F224C912BC18F9A006B6D3E /* TransactionsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C902BC18F9A006B6D3E /* TransactionsScreen.swift */; };
 		0F224C942BC18FBA006B6D3E /* BiometricScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C932BC18FBA006B6D3E /* BiometricScreen.swift */; };
 		0F224C962BC18FCD006B6D3E /* BiometricViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C952BC18FCD006B6D3E /* BiometricViewModel.swift */; };
-		0F224C982BC18FE3006B6D3E /* TransactionBiometricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C972BC18FE3006B6D3E /* TransactionBiometricView.swift */; };
-		0F224C9A2BC18FF2006B6D3E /* PaymentBiometricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C992BC18FF2006B6D3E /* PaymentBiometricView.swift */; };
+		0F224C982BC18FE3006B6D3E /* ExpenseRoundupBiometricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C972BC18FE3006B6D3E /* ExpenseRoundupBiometricView.swift */; };
+		0F224C9A2BC18FF2006B6D3E /* TransferBiometricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C992BC18FF2006B6D3E /* TransferBiometricView.swift */; };
 		0F224C9D2BC19012006B6D3E /* HomeBiometricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224C9C2BC19012006B6D3E /* HomeBiometricView.swift */; };
 		0F224CA02BC1916E006B6D3E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0F224C9F2BC1916E006B6D3E /* Kingfisher */; };
 		0F224CA22BC1926E006B6D3E /* KronaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0F224CA12BC1926E006B6D3E /* KronaOne-Regular.ttf */; };
@@ -49,6 +49,11 @@
 		0F224CB82BC1B812006B6D3E /* FeliciaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB72BC1B812006B6D3E /* FeliciaService.swift */; };
 		0F224CBA2BC1BA63006B6D3E /* NewFileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CB92BC1BA63006B6D3E /* NewFileViewModel.swift */; };
 		0F224CBD2BC1C0B5006B6D3E /* TransferScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CBC2BC1C0B5006B6D3E /* TransferScreen.swift */; };
+		0F224CC02BC1E38E006B6D3E /* TransferViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CBF2BC1E38E006B6D3E /* TransferViewModel.swift */; };
+		0F224CC22BC1E3BC006B6D3E /* ExpenseRoundupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC12BC1E3BC006B6D3E /* ExpenseRoundupScreen.swift */; };
+		0F224CC42BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC32BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift */; };
+		0F224CC62BC201DC006B6D3E /* TapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC52BC201DC006B6D3E /* TapAPI.swift */; };
+		0F224CC82BC20330006B6D3E /* TapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC72BC20330006B6D3E /* TapService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,8 +86,8 @@
 		0F224C902BC18F9A006B6D3E /* TransactionsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsScreen.swift; sourceTree = "<group>"; };
 		0F224C932BC18FBA006B6D3E /* BiometricScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricScreen.swift; sourceTree = "<group>"; };
 		0F224C952BC18FCD006B6D3E /* BiometricViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricViewModel.swift; sourceTree = "<group>"; };
-		0F224C972BC18FE3006B6D3E /* TransactionBiometricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionBiometricView.swift; sourceTree = "<group>"; };
-		0F224C992BC18FF2006B6D3E /* PaymentBiometricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentBiometricView.swift; sourceTree = "<group>"; };
+		0F224C972BC18FE3006B6D3E /* ExpenseRoundupBiometricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRoundupBiometricView.swift; sourceTree = "<group>"; };
+		0F224C992BC18FF2006B6D3E /* TransferBiometricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferBiometricView.swift; sourceTree = "<group>"; };
 		0F224C9C2BC19012006B6D3E /* HomeBiometricView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBiometricView.swift; sourceTree = "<group>"; };
 		0F224CA12BC1926E006B6D3E /* KronaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KronaOne-Regular.ttf"; sourceTree = "<group>"; };
 		0F224CB12BC1A85F006B6D3E /* NewLoanScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLoanScreen.swift; sourceTree = "<group>"; };
@@ -91,6 +96,11 @@
 		0F224CB72BC1B812006B6D3E /* FeliciaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeliciaService.swift; sourceTree = "<group>"; };
 		0F224CB92BC1BA63006B6D3E /* NewFileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFileViewModel.swift; sourceTree = "<group>"; };
 		0F224CBC2BC1C0B5006B6D3E /* TransferScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferScreen.swift; sourceTree = "<group>"; };
+		0F224CBF2BC1E38E006B6D3E /* TransferViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewModel.swift; sourceTree = "<group>"; };
+		0F224CC12BC1E3BC006B6D3E /* ExpenseRoundupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRoundupScreen.swift; sourceTree = "<group>"; };
+		0F224CC32BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRounupViewModel.swift; sourceTree = "<group>"; };
+		0F224CC52BC201DC006B6D3E /* TapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAPI.swift; sourceTree = "<group>"; };
+		0F224CC72BC20330006B6D3E /* TapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,9 +147,6 @@
 				0F224C662BC18C7F006B6D3E /* Models */,
 				0F224C612BC18C43006B6D3E /* Resources */,
 				0F224C5F2BC18C2F006B6D3E /* UI */,
-				0F224CBE2BC1C4D8006B6D3E /* ExpenseRoundup */,
-				0F224C922BC18FA9006B6D3E /* Biometrics */,
-				0F224CB02BC1A845006B6D3E /* Chatbot */,
 				0F224C602BC18C38006B6D3E /* Utils */,
 				0F224C4F2BC18A87006B6D3E /* Preview Content */,
 			);
@@ -158,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				0F224CB52BC1B62A006B6D3E /* FeliciaAPI.swift */,
+				0F224CC52BC201DC006B6D3E /* TapAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -168,6 +176,7 @@
 				0F224C622BC18C5D006B6D3E /* UserDefaultsService.swift */,
 				0F224C642BC18C6D006B6D3E /* UserService.swift */,
 				0F224CB72BC1B812006B6D3E /* FeliciaService.swift */,
+				0F224CC72BC20330006B6D3E /* TapService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -180,6 +189,9 @@
 				0F224C842BC18F09006B6D3E /* Launchscreen */,
 				0F224C892BC18F57006B6D3E /* Home */,
 				0F224CBB2BC1C0A4006B6D3E /* Transfer */,
+				0F224CBE2BC1C4D8006B6D3E /* ExpenseRoundup */,
+				0F224C922BC18FA9006B6D3E /* Biometrics */,
+				0F224CB02BC1A845006B6D3E /* Chatbot */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -260,8 +272,8 @@
 			isa = PBXGroup;
 			children = (
 				0F224C9C2BC19012006B6D3E /* HomeBiometricView.swift */,
-				0F224C992BC18FF2006B6D3E /* PaymentBiometricView.swift */,
-				0F224C972BC18FE3006B6D3E /* TransactionBiometricView.swift */,
+				0F224C992BC18FF2006B6D3E /* TransferBiometricView.swift */,
+				0F224C972BC18FE3006B6D3E /* ExpenseRoundupBiometricView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -279,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				0F224CBC2BC1C0B5006B6D3E /* TransferScreen.swift */,
+				0F224CBF2BC1E38E006B6D3E /* TransferViewModel.swift */,
 			);
 			path = Transfer;
 			sourceTree = "<group>";
@@ -286,6 +299,8 @@
 		0F224CBE2BC1C4D8006B6D3E /* ExpenseRoundup */ = {
 			isa = PBXGroup;
 			children = (
+				0F224CC12BC1E3BC006B6D3E /* ExpenseRoundupScreen.swift */,
+				0F224CC32BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift */,
 			);
 			path = ExpenseRoundup;
 			sourceTree = "<group>";
@@ -376,9 +391,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F224CC42BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift in Sources */,
 				0F224CB42BC1AA6D006B6D3E /* Variant.swift in Sources */,
 				0F224C6C2BC18CAE006B6D3E /* Fonts.swift in Sources */,
 				0F224C752BC18D1F006B6D3E /* BaseViewModel.swift in Sources */,
+				0F224CC62BC201DC006B6D3E /* TapAPI.swift in Sources */,
 				0F224C712BC18D00006B6D3E /* Colors.swift in Sources */,
 				0F224C8D2BC18F79006B6D3E /* HomeViewModel.swift in Sources */,
 				0F224C832BC18F03006B6D3E /* OnboardingScreen.swift in Sources */,
@@ -395,19 +412,22 @@
 				0F224C682BC18C8E006B6D3E /* Card.swift in Sources */,
 				0F224C962BC18FCD006B6D3E /* BiometricViewModel.swift in Sources */,
 				0F224CB62BC1B62A006B6D3E /* FeliciaAPI.swift in Sources */,
-				0F224C9A2BC18FF2006B6D3E /* PaymentBiometricView.swift in Sources */,
+				0F224C9A2BC18FF2006B6D3E /* TransferBiometricView.swift in Sources */,
 				0F224C652BC18C6D006B6D3E /* UserService.swift in Sources */,
 				0F224C812BC18EF2006B6D3E /* StartScreen.swift in Sources */,
 				0F224CB22BC1A85F006B6D3E /* NewLoanScreen.swift in Sources */,
 				0F224CB82BC1B812006B6D3E /* FeliciaService.swift in Sources */,
-				0F224C982BC18FE3006B6D3E /* TransactionBiometricView.swift in Sources */,
+				0F224C982BC18FE3006B6D3E /* ExpenseRoundupBiometricView.swift in Sources */,
 				0F224C4C2BC18A85006B6D3E /* SceneDelegate.swift in Sources */,
 				0F224C732BC18D14006B6D3E /* Navigation.swift in Sources */,
+				0F224CC82BC20330006B6D3E /* TapService.swift in Sources */,
+				0F224CC02BC1E38E006B6D3E /* TransferViewModel.swift in Sources */,
 				0F224C4A2BC18A85006B6D3E /* AppDelegate.swift in Sources */,
 				0F224C942BC18FBA006B6D3E /* BiometricScreen.swift in Sources */,
 				0F224C912BC18F9A006B6D3E /* TransactionsScreen.swift in Sources */,
 				0F224C792BC18D3E006B6D3E /* BackButton.swift in Sources */,
 				0F224C5C2BC18C02006B6D3E /* RootView.swift in Sources */,
+				0F224CC22BC1E3BC006B6D3E /* ExpenseRoundupScreen.swift in Sources */,
 				0F224C882BC18F4F006B6D3E /* LaunchscreenRepresentable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
