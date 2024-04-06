@@ -24,7 +24,7 @@ app = Flask(__name__)
 def generate_text():
 
     prompt = request.args.get('prompt', '')
-    max_len = int(request.args.get('max_len', 20))
+    max_len = int(request.args.get('max_len', 200))
     # inputs = tokenizer.encode(prompt, return_tensors='pt')
     # outputs = model.generate(inputs, max_length=max_len, num_return_sequences=1)
     # generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
@@ -38,6 +38,32 @@ def generate_text():
     # Return the generated text as JSON
     return jsonify({'generated_text': response.generations[0].text})
 
+
+@app.route('/generate_with_context', methods=['POST'])
+def generate_text_with_context():
+    data = request.get_json()
+    chat_history = data.get('chat_history')
+    print(chat_history, len(chat_history), type(chat_history[0]))
+    message = data.get('message')
+    print(message, type(message))
+
+    response = co.chat(
+        chat_history=chat_history,
+        message=message,
+        connectors=[{"id": "web-search"}],
+        max_tokens=200
+    )
+
+    return jsonify({'generated_text': response.text}) 
+
+#json body looks like this
+# {
+#   "chat_history": [
+#     {"role": "USER", "message": "Who discovered gravity?"},
+#     {"role": "CHATBOT", "message": "The man who is widely credited with discovering gravity is Sir Isaac Newton"}
+#   ],
+#   "message": "What year was he born?"
+# }
 
 @app.route('/tap', methods=['POST'])
 def tap():
