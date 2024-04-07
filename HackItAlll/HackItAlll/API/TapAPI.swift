@@ -68,7 +68,7 @@ class TapAPI {
     public func postAllTaps() -> Future<String, Error> {
         Future<String, Error> { promise in
             print(allTaps)
-            var urlComponents = URLComponents(string: "https://f447-81-196-154-84.ngrok-free.app//train-model")
+            var urlComponents = URLComponents(string: "https://f447-81-196-154-84.ngrok-free.app/train-model")
             var coordsAsString = allTaps.map({String($0)})
             coordsAsString.append(name)
             urlComponents?.queryItems = [

@@ -18,7 +18,8 @@ class FeliciaAPI {
         Future<Message, Error> { promise in
             
             
-            var urlComponents = URLComponents(string: "http://127.0.0.1:5000/generate")
+            var urlComponents = URLComponents(string: "https://f447-81-196-154-84.ngrok-free.app/generate")
+            //"http://127.0.0.1:5000/generate")
             urlComponents?.queryItems = [
                 URLQueryItem(name: "prompt", value:  prompt),
                 URLQueryItem(name: "max_len", value: "200")
