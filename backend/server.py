@@ -65,7 +65,7 @@ def generate_text_with_context():
 #   "message": "What year was he born?"
 # }
 
-@app.route('/tap', methods=['POST'])
+@app.route('/model', methods=['POST'])
 def tap():
     data = request.get_json()
     x_start = data.get('x_start')
@@ -83,7 +83,7 @@ def tap():
     return jsonify({"tap": True})
 
 
-@app.route('/tap_all', methods=['POST'])
+@app.route('/train-model', methods=['POST'])
 def tap_all():
     data = request.get_json()
     all_coords = data.get('all_coords')
