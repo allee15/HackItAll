@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum Completion {
+    case completed
+    case error(Error)
+}
+
 class NewLoanViewModel: BaseViewModel {
     let variants: [Variant] = [
         Variant(title: "Question", description: "Give me loan variants at BCR"),
@@ -24,20 +29,21 @@ class NewLoanViewModel: BaseViewModel {
         let message = Message(message: textMessage)
         self.messages.append(message)
         
+        
         FeliciaService.shared.enhancePrompt(prompt: textMessage)
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 
             } receiveValue: { [weak self] message in
                 let mess = Message(message: message)
-                self?.sendFeliciaMessage(message: mess)
+        self?.sendFeliciaMessage(message: mess)
             }.store(in: &self.bag)
 
         self.textMessage = ""
     }
     
     func sendFeliciaMessage(message: Message) {
-        FeliciaService.shared.getFelicia(prompt: textMessage)
+        FeliciaService.shared.getFelicia(prompt: message.message)
             .receive(on: DispatchQueue.main)
             .sink { _ in
                 
@@ -46,12 +52,12 @@ class NewLoanViewModel: BaseViewModel {
             }
             .store(in: &self.bag)
         
-        FeliciaService.shared.getFeliciaFromConversation(conversation: messages, prompt: textMessage)
-            .receive(on: DispatchQueue.main)
-            .sink { _ in
-                
-            } receiveValue: { [weak self] message in
-                self?.messages.append(message)
-            }.store(in: &self.bag)
+//        FeliciaService.shared.getFeliciaFromConversation(conversation: messages, prompt: message.message)
+//            .receive(on: DispatchQueue.main)
+//            .sink { _ in
+//                
+//            } receiveValue: { [weak self] message in
+//                self?.messages.append(message)
+//            }.store(in: &self.bag)
     }
 }

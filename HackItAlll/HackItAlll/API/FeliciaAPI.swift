@@ -18,7 +18,7 @@ class FeliciaAPI {
         Future<Message, Error> { promise in
             
             
-            var urlComponents = URLComponents(string: "https://f447-81-196-154-84.ngrok-free.app/generate")
+            var urlComponents = URLComponents(string: "http://127.0.0.1:5000/generate")
             urlComponents?.queryItems = [
                 URLQueryItem(name: "prompt", value:  prompt),
                 URLQueryItem(name: "max_len", value: "200")
@@ -62,7 +62,7 @@ class FeliciaAPI {
             }
             chatHistory.append("]")
             
-            var urlComponents = URLComponents(string: "https://f447-81-196-154-84.ngrok-free.app/generate_with_context")
+            var urlComponents = URLComponents(string: "http://127.0.0.1:5000/generate_with_context")
             urlComponents?.queryItems = [
                 URLQueryItem(name: "chat_history", value:  chatHistory),
                 URLQueryItem(name: "message", value: prompt)
