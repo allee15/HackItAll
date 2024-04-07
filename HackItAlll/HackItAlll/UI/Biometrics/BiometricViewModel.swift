@@ -140,7 +140,7 @@ class BiometricViewModel: BaseViewModel {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    break
+                    self.eventSubject.send(.completed)
                 case .failure(let error):
                     self.eventSubject.send(.failure(error))
                 }

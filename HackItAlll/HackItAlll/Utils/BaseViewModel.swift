@@ -10,4 +10,9 @@ import Combine
 
 class BaseViewModel: ObservableObject {
     var bag = Set<AnyCancellable>()
+    
+    func cancel() {
+        bag.forEach { $0.cancel() }
+        bag.removeAll()
+    }
 }

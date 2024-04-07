@@ -26,6 +26,15 @@ struct ExpenseRoundupBiometricView: View {
         print("Tap Coordinates: (\(tapX), \(tapY))")
         print("Roll Degrees: \(viewModel.rollDegrees)")
         print("Pitch Degrees: \(viewModel.pitchDegrees)")
+        
+        allTaps.append(Float(startX))
+        allTaps.append(Float(startX))
+        allTaps.append(Float(endX))
+        allTaps.append(Float(endY))
+        allTaps.append(Float(tapX))
+        allTaps.append(Float(tapY))
+        allTaps.append(Float(viewModel.rollDegrees))
+        allTaps.append(Float(viewModel.pitchDegrees))
     }
     
     var body: some View {

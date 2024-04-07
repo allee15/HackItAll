@@ -22,13 +22,13 @@ struct BiometricScreen: View {
             VStack {
                 switch viewModel.taps {
                     
-                case ..<20:
+                case ..<2:
                     HomeBiometricsView(viewModel: viewModel)
                     
-                case 20..<40:
+                case 2..<4:
                     TransferBiometricView(viewModel: viewModel)
 
-                case 40..<60:
+                case 4..<6:
                     ExpenseRoundupBiometricView(viewModel: viewModel)
                     
                 default:
@@ -44,7 +44,7 @@ struct BiometricScreen: View {
             case .loading:
                 navigation.push(LoadingScreen().asDestination(), animated: true)
             case .failure(_):
-                navigation.replaceNavigationStack([HomeScreen().asDestination()], animated: true)
+                navigation.push(ErrorScreen().asDestination(), animated: true)
             }
         }
     }

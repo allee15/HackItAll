@@ -17,7 +17,7 @@ import cohere
 
 co = cohere.Client('5TYOkSNKhKPMrAGZHaDW8Ga6Zlq6tRu33WcU5rif')
 
-app = Flask(_name_)
+app = Flask(__name__)
 
 
 @app.route('/generate', methods=['GET'])
@@ -76,5 +76,5 @@ def user_taps():
     })
 
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     app.run(debug=True)

@@ -19,7 +19,7 @@ class HomeViewModel: BaseViewModel {
     
     let motionManager = CMMotionManager()
     var data: [Float] = []
-    var response: Bool = false
+    var response: String = ""
     
     let cards: [Card] = [
         Card(id: 0,

@@ -92,7 +92,7 @@ struct HomeScreen: View {
                         }
                     case 1:
                         WidgetActionView(icon: .icCredit,
-                                         text: "Loans")
+                                         text: "Felicia")
                         .modifier(GlobalPositionModifier())
                         .onPreferenceChange(GlobalFrameKey.self) { value in
                             viewModel.globalFrame = value

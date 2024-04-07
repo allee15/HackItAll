@@ -24,7 +24,7 @@ class TransferVewModel: BaseViewModel {
     
     let motionManager = CMMotionManager()
     var data: [Float] = []
-    var response: Bool = false
+    var response: String = ""
     
     func startAccelerometerData() {
         if motionManager.isAccelerometerAvailable {

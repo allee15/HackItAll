@@ -54,6 +54,8 @@
 		0F224CC42BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC32BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift */; };
 		0F224CC62BC201DC006B6D3E /* TapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC52BC201DC006B6D3E /* TapAPI.swift */; };
 		0F224CC82BC20330006B6D3E /* TapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC72BC20330006B6D3E /* TapService.swift */; };
+		0F224CCA2BC2749B006B6D3E /* ErrorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CC92BC2749B006B6D3E /* ErrorScreen.swift */; };
+		0F224CCC2BC27A22006B6D3E /* EnhancePromptAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F224CCB2BC27A22006B6D3E /* EnhancePromptAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +103,8 @@
 		0F224CC32BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseRounupViewModel.swift; sourceTree = "<group>"; };
 		0F224CC52BC201DC006B6D3E /* TapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapAPI.swift; sourceTree = "<group>"; };
 		0F224CC72BC20330006B6D3E /* TapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapService.swift; sourceTree = "<group>"; };
+		0F224CC92BC2749B006B6D3E /* ErrorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorScreen.swift; sourceTree = "<group>"; };
+		0F224CCB2BC27A22006B6D3E /* EnhancePromptAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancePromptAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 			children = (
 				0F224CB52BC1B62A006B6D3E /* FeliciaAPI.swift */,
 				0F224CC52BC201DC006B6D3E /* TapAPI.swift */,
+				0F224CCB2BC27A22006B6D3E /* EnhancePromptAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 				0F224C782BC18D3E006B6D3E /* BackButton.swift */,
 				0F224C7A2BC18D4D006B6D3E /* LoaderView.swift */,
 				0F224C7C2BC18D5C006B6D3E /* LoadingScreen.swift */,
+				0F224CC92BC2749B006B6D3E /* ErrorScreen.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 			files = (
 				0F224CC42BC1F4EF006B6D3E /* ExpenseRounupViewModel.swift in Sources */,
 				0F224CB42BC1AA6D006B6D3E /* Variant.swift in Sources */,
+				0F224CCA2BC2749B006B6D3E /* ErrorScreen.swift in Sources */,
 				0F224C6C2BC18CAE006B6D3E /* Fonts.swift in Sources */,
 				0F224C752BC18D1F006B6D3E /* BaseViewModel.swift in Sources */,
 				0F224CC62BC201DC006B6D3E /* TapAPI.swift in Sources */,
@@ -413,6 +420,7 @@
 				0F224C962BC18FCD006B6D3E /* BiometricViewModel.swift in Sources */,
 				0F224CB62BC1B62A006B6D3E /* FeliciaAPI.swift in Sources */,
 				0F224C9A2BC18FF2006B6D3E /* TransferBiometricView.swift in Sources */,
+				0F224CCC2BC27A22006B6D3E /* EnhancePromptAPI.swift in Sources */,
 				0F224C652BC18C6D006B6D3E /* UserService.swift in Sources */,
 				0F224C812BC18EF2006B6D3E /* StartScreen.swift in Sources */,
 				0F224CB22BC1A85F006B6D3E /* NewLoanScreen.swift in Sources */,

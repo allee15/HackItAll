@@ -24,6 +24,19 @@ class NewLoanViewModel: BaseViewModel {
         let message = Message(message: textMessage)
         self.messages.append(message)
         
+        FeliciaService.shared.enhancePrompt(prompt: textMessage)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+                
+            } receiveValue: { [weak self] message in
+                let mess = Message(message: message)
+                self?.sendFeliciaMessage(message: mess)
+            }.store(in: &self.bag)
+
+        self.textMessage = ""
+    }
+    
+    func sendFeliciaMessage(message: Message) {
         FeliciaService.shared.getFelicia(prompt: textMessage)
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -40,7 +53,5 @@ class NewLoanViewModel: BaseViewModel {
             } receiveValue: { [weak self] message in
                 self?.messages.append(message)
             }.store(in: &self.bag)
-
-        self.textMessage = ""
     }
 }

@@ -22,4 +22,9 @@ class FeliciaService: BaseViewModel {
         return FeliciaAPI.shared.getFeliciaFromConversation(conversation: conversation, prompt: prompt)
             .eraseToAnyPublisher()
     }
+    
+    public func enhancePrompt(prompt: String) -> AnyPublisher<String, Error> {
+        return EnhancePromptAPI.shared.enhancePrompt(prompt: prompt)
+            .eraseToAnyPublisher()
+    }
 }
