@@ -22,13 +22,13 @@ struct BiometricScreen: View {
             VStack {
                 switch viewModel.taps {
                     
-                case ..<2:
+                case ..<20:
                     HomeBiometricsView(viewModel: viewModel)
                     
-                case 2..<4:
+                case 20..<40:
                     TransferBiometricView(viewModel: viewModel)
 
-                case 4..<6:
+                case 40..<60:
                     ExpenseRoundupBiometricView(viewModel: viewModel)
                     
                 default:
