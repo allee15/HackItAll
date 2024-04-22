@@ -26,7 +26,7 @@ class HomeViewModel: BaseViewModel {
              series: "234567890123456",
              thumbnailUrl: .imgCard1,
              detailsIcon: .imgCard4,
-             balance: "2346.70"),
+             balance: "100000.5"),
         Card(id: 1,
              series: "9876543210987654",
              thumbnailUrl: .imgCard2,

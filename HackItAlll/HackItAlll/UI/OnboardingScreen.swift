@@ -26,7 +26,7 @@ struct OnboardingScreen: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 16)
                 
-                Text("Secure your application with [name]. Sign up to start")
+                Text("Secure your application with Felicia. Sign up to start")
                     .font(.KronaOne.regular(size: 12))
                     .foregroundStyle(Color.fontOnboarding)
                     .multilineTextAlignment(.center)
